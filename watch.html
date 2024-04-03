@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <link rel="stylesheet" href="watch.css">
+</head>
+<body>
+    <div class="watch">
+        <h1 id="time">00:00:00</h1>
+        <button onclick="start()" class="btn">Start</button>
+        <button onclick="Pause()" class="btn">Pause</button>
+        <button onclick="Reset()" class="btn">Reset</button>
+    </div>
+    <script>
+        let seconds=0;
+        let minutes=0;
+        let hours=0;
+        let display=document.getElementById("time");
+        let timer;
+
+        function stopwatch(){
+            seconds++;
+            if(seconds>=60){
+                minutes++;
+                seconds=0;
+            }
+
+            if(minutes>=60){
+                hours++;
+                minutes=0;
+            }
+            display.textContent=Kawish(hours)+":"+Kawish(minutes)+":"+Kawish(seconds);
+        }
+
+        function start(){
+            timer= setInterval(stopwatch, 1000);
+        }
+
+        function Kawish(number){
+            return(number<10)? "0"+number : number;
+        }
+
+        function Pause(){
+            clearInterval(timer);
+        }
+        
+        function Reset(){
+            clearInterval(timer);
+            hours=0;
+            seconds=0;
+            minutes=0;
+            display.textContent=Kawish(hours)+":"+Kawish(minutes)+":"+Kawish(seconds);
+        }
+
+    </script>
+    
+</body>
+</html>
